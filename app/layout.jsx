@@ -17,5 +17,5 @@ export default function RootLayout({ children }) {
 
 export const metadata = {
   title: 'SevenWraps - Modern Web Solutions',
-  description: 'Premium web development and design services',
+  description: 'Premium web development and design services'
 };

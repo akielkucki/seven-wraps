@@ -19,7 +19,7 @@ export default function Navbar() {
     },
     {
       title: 'Paint Protection',
-      href: '/services/paint-protection', 
+      href: '/services/paint-protection',
       color: 'text-blue-400',
       description: 'Advanced PPF with self-healing technology'
     },
@@ -32,7 +32,7 @@ export default function Navbar() {
     {
       title: 'Trim & Accessories',
       href: '/services/trim-accessories',
-      color: 'text-green-400', 
+      color: 'text-green-400',
       description: 'Custom accent pieces and trim wrapping'
     },
     {
@@ -49,27 +49,27 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/">
-            <img 
-              src="/logo.svg" 
-              alt="SevenWraps Logo" 
-              className="h-8 md:h-10 lg:h-12 w-auto" 
+            <img
+              src="/logo.svg"
+              alt="SevenWraps Logo"
+              className="h-8 md:h-10 lg:h-12 w-auto"
             />
           </Link>
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
             {/* Services Dropdown */}
-            <div 
+            <div
               className="relative"
               onMouseEnter={() => setIsServicesOpen(true)}
               onMouseLeave={() => setIsServicesOpen(false)}
             >
               <button className="text-sm text-gray-300 hover:text-white transition-colors uppercase tracking-wide flex items-center">
                 Services
-                <svg 
-                  className={`ml-1 w-4 h-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} 
-                  fill="none" 
-                  stroke="currentColor" 
+                <svg
+                  className={`ml-1 w-4 h-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -83,7 +83,7 @@ export default function Navbar() {
                 <div className="p-6">
                   <div className="grid gap-4">
                     {services.map((service, index) => (
-                      <Link 
+                      <Link
                         key={index}
                         href={service.href}
                         className="group flex items-start p-3 rounded-xl hover:bg-white/5 transition-all duration-200"
@@ -96,10 +96,10 @@ export default function Navbar() {
                             {service.description}
                           </div>
                         </div>
-                        <svg 
-                          className="w-4 h-4 text-gray-500 group-hover:text-white transition-colors mt-0.5" 
-                          fill="none" 
-                          stroke="currentColor" 
+                        <svg
+                          className="w-4 h-4 text-gray-500 group-hover:text-white transition-colors mt-0.5"
+                          fill="none"
+                          stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

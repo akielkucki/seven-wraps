@@ -12,23 +12,22 @@ import { useState, useEffect } from 'react';
  */
 export default function HeroShowcase() {
   const [showIntro, setShowIntro] = useState(false);
-  
+
   useEffect(() => {
     // Check if intro has been shown in this session
     const hasSeenIntro = sessionStorage.getItem('sevenWrapsIntroSeen');
-    
+
     if (!hasSeenIntro) {
       setShowIntro(true);
     }
   }, []);
-  
+
   const handleIntroComplete = () => {
     setShowIntro(false);
     // Mark intro as seen in this session
     sessionStorage.setItem('sevenWrapsIntroSeen', 'true');
   };
 
-  
 
   return (
     <>
@@ -48,11 +47,11 @@ export default function HeroShowcase() {
           overscroll-behavior-y: none;
         }
       `}</style>
-      
+
       <div className="min-h-screen overflow-x-hidden relative" style={{scrollBehavior: 'smooth'}}>
         {/* Intro Sequence */}
         {showIntro && <IntroSequence onComplete={handleIntroComplete} />}
-        
+
         {/* Navigation - Hidden during intro */}
         {!showIntro && <Navbar />}
 

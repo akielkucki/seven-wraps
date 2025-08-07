@@ -19,7 +19,7 @@ export default function PaintProtectionPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-blue-400/5 via-transparent to-black"></div>
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl animate-pulse"></div>
         </div>
-        
+
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
             <div className="text-9xl font-black text-blue-400/20 mb-4">02</div>
@@ -37,9 +37,9 @@ export default function PaintProtectionPage() {
           {/* Hero Image */}
           <div className="relative max-w-6xl mx-auto">
             <div className="relative overflow-hidden rounded-3xl">
-              <img 
-                src="/ppf.jpg" 
-                alt="Professional Paint Protection Film Installation" 
+              <img
+                src="/ppf.jpg"
+                alt="Professional Paint Protection Film Installation"
                 className="w-full h-96 object-cover"
               />
               <div className="absolute inset-0 bg-black/10"></div>

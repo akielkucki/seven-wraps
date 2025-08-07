@@ -9,13 +9,13 @@ export default function HeroLuxuryVideo() {
       {/* Video Background */}
       <div className="absolute inset-0 bg-black">
 
-        
+
         {/* Bottom Half - Second Video */}
-        <video 
+        <video
           className="w-full h-full object-cover"
-          autoPlay 
-          muted 
-          loop 
+          autoPlay
+          muted
+          loop
           playsInline
         >
           <source src="/hero.mp4" type="video/mp4" />
@@ -26,7 +26,7 @@ export default function HeroLuxuryVideo() {
             </div>
           </div>
         </video>
-        
+
         {/* Dark overlay for text readability */}
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
