@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import Navbar from '../../../components/Navbar';
+import {motion} from 'framer-motion';
 
 /**
  * Color Changes Service Page
@@ -170,22 +171,59 @@ export default function ColorChangesPage() {
               <div className="bg-gradient-to-br from-purple-400/10 to-pink-400/10 rounded-3xl p-8">
                 <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">Popular Finishes</h3>
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center py-2 border-b border-gray-700">
-                    <span className="text-white">Gloss</span>
-                    <span className="text-gray-300">High-shine finish</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2 border-b border-gray-700">
-                    <span className="text-white">Satin</span>
-                    <span className="text-gray-300">Sophisticated matte</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2 border-b border-gray-700">
-                    <span className="text-white">Chrome</span>
-                    <span className="text-gray-300">Mirror-like reflection</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2">
-                    <span className="text-white">Carbon Fiber</span>
-                    <span className="text-gray-300">Textured premium look</span>
-                  </div>
+                  {[
+                    {
+                      name: 'Gloss',
+                      description: 'High-shine finish',
+                      background: 'linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.3) 100%)',
+                      shine: true
+                    },
+                    {
+                      name: 'Satin',
+                      description: 'Sophisticated matte',
+                      background: 'linear-gradient(to bottom, rgba(100,100,100,0.2) 0%, rgba(80,80,80,0.3) 100%)',
+                      shine: false
+                    },
+                    {
+                      name: 'Chrome',
+                      description: 'Mirror-like reflection',
+                      background: 'linear-gradient(135deg, rgba(200,200,200,0.4) 0%, rgba(255,255,255,0.6) 25%, rgba(150,150,150,0.3) 50%, rgba(255,255,255,0.6) 75%, rgba(200,200,200,0.4) 100%)',
+                      shine: true
+                    },
+                    {
+                      name: 'Carbon Fiber',
+                      description: 'Textured premium look',
+                      background: 'repeating-linear-gradient(45deg, rgba(40,40,40,0.4) 0px, rgba(40,40,40,0.4) 2px, rgba(20,20,20,0.5) 2px, rgba(20,20,20,0.5) 4px)',
+                      shine: false
+                    }
+                  ].map((finish, index) => (
+                      <motion.div
+                          key={finish.name}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{
+                            opacity: 1,
+                            x: 0,
+                            background: finish.background
+                          }}
+                          transition={{
+                            duration: 0.6,
+                            delay: index * 0.1,
+                            ease: "easeOut"
+                          }}
+                          whileHover={{
+                            scale: 1.02,
+                            boxShadow: finish.shine ? '0 4px 20px rgba(255,255,255,0.2)' : '0 4px 20px rgba(0,0,0,0.3)',
+                            transition: { duration: 0.3 }
+                          }}
+                          className={`flex justify-between items-center py-4 px-4 ${
+                              index < 3 ? 'border-b border-gray-700' : ''
+                          } rounded-lg cursor-pointer backdrop-blur-sm`}
+                          style={{ background: finish.background }}
+                      >
+                        <span className="text-white font-medium">{finish.name}</span>
+                        <span className="text-gray-300">{finish.description}</span>
+                      </motion.div>
+                  ))}
                 </div>
               </div>
             </div>

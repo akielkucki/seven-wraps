@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Navbar from '../../../components/Navbar';
+import { motion } from 'framer-motion';
 
 /**
  * Commercial Wraps Service Page
@@ -89,22 +90,50 @@ export default function CommercialWrapsPage() {
               <div className="bg-orange-400/10 rounded-3xl p-8">
                 <h3 className="text-2xl font-bold text-orange-400 mb-4">Vehicle Types</h3>
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center py-2 border-b border-gray-700">
-                    <span className="text-white">Vans & Trucks</span>
-                    <span className="text-gray-300">Maximum coverage area</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2 border-b border-gray-700">
-                    <span className="text-white">Service Vehicles</span>
-                    <span className="text-gray-300">Professional appearance</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2 border-b border-gray-700">
-                    <span className="text-white">Box Trucks</span>
-                    <span className="text-gray-300">Large format graphics</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2">
-                    <span className="text-white">Trailers</span>
-                    <span className="text-gray-300">Highway advertising</span>
-                  </div>
+                  {[
+                    {
+                      name: 'Vans & Trucks',
+                      description: 'Maximum coverage area'
+                    },
+                    {
+                      name: 'Service Vehicles',
+                      description: 'Professional appearance'
+                    },
+                    {
+                      name: 'Box Trucks',
+                      description: 'Large format graphics'
+                    },
+                    {
+                      name: 'Trailers',
+                      description: 'Highway advertising'
+                    }
+                  ].map((vehicle, index) => (
+                      <motion.div
+                          key={vehicle.name}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{
+                            opacity: 1,
+                            x: 0
+                          }}
+                          transition={{
+                            duration: 0.6,
+                            delay: index * 0.1,
+                            ease: "easeOut"
+                          }}
+                          whileHover={{
+                            scale: 1.02,
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            borderColor: 'rgba(59, 130, 246, 0.3)',
+                            transition: { duration: 0.3 }
+                          }}
+                          className={`flex justify-between items-center py-4 px-4 ${
+                              index < 3 ? 'border-b border-gray-700' : ''
+                          } rounded-lg cursor-pointer`}
+                      >
+                        <span className="text-white font-medium">{vehicle.name}</span>
+                        <span className="text-gray-300">{vehicle.description}</span>
+                      </motion.div>
+                  ))}
                 </div>
               </div>
             </div>

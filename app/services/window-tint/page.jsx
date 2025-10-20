@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import Navbar from '../../../components/Navbar';
-
+import { motion } from 'framer-motion';
+import CountUp from 'react-countup';
 /**
  * Window Tint Service Page
  * @returns {JSX.Element}
@@ -82,22 +83,68 @@ export default function WindowTintPage() {
               <div className="bg-yellow-400/10 rounded-3xl p-8">
                 <h3 className="text-2xl font-bold text-yellow-400 mb-4">Tint Options</h3>
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center py-2 border-b border-gray-700">
-                    <span className="text-white">5% (Limo Dark)</span>
-                    <span className="text-gray-300">Maximum Privacy</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2 border-b border-gray-700">
-                    <span className="text-white">15% (Dark)</span>
-                    <span className="text-gray-300">High Privacy</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2 border-b border-gray-700">
-                    <span className="text-white">35% (Medium)</span>
-                    <span className="text-gray-300">Balanced</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2">
-                    <span className="text-white">50% (Light)</span>
-                    <span className="text-gray-300">Subtle Tint</span>
-                  </div>
+                  {[
+                    {
+                      tint: '5% (Limo Dark)',
+                      label: 'Maximum Privacy',
+                      darkness: 0.95
+                    },
+                    {
+                      tint: '15% (Dark)',
+                      label: 'High Privacy',
+                      darkness: 0.85
+                    },
+                    {
+                      tint: '35% (Medium)',
+                      label: 'Balanced',
+                      darkness: 0.65
+                    },
+                    {
+                      tint: '50% (Light)',
+                      label: 'Subtle Tint',
+                      darkness: 0.5
+                    }
+                  ].map((tint, index) => (
+                      <motion.div
+                          key={tint.label}
+                          initial={{
+                            opacity: 0,
+                            x: -20
+                          }}
+                          animate={{
+                            opacity: 1,
+                            x: 0,
+                            background: `linear-gradient(to right, rgba(0,0,0,0.05) 0%, rgba(0,0,0,${tint.darkness}) 100%)`
+                          }}
+                          transition={{
+                            duration: 0.6,
+                            delay: index * 0.3,
+                            ease: 'easeOut'
+                          }}
+                          whileHover={{
+                            background: `linear-gradient(to right, rgba(0,0,0,${tint.darkness * 0.5}) 0%, rgba(0,0,0,${tint.darkness}) 100%)`,
+                            scale: 1.02,
+                            transition: { duration: 0.3 }
+                          }}
+                          className=" border-b border-gray-700 rounded-lg cursor-pointer"
+                      >
+                        <div className="flex flex-col">
+                          <div className="flex justify-between items-center  py-4 px-4">
+                            <span className="text-white font-medium"><CountUp end={parseInt(tint.tint.slice(0,tint.tint.indexOf('%')), 10)} delay={0.3*index}/>{tint.tint.slice(tint.tint.indexOf('%'))}</span>
+                              <span className="text-gray-300">{tint.label}</span>
+                          </div>
+                          <div>
+                            <motion.span
+                                initial={{width: '0%'}}
+                                animate={{width: `${100*tint.darkness}%`}}
+                                transition={{delay: (0.3*index), duration: 2*tint.darkness}}
+                                className={'block h-[0.5px] bg-[#0891b2]'}
+                            ></motion.span>
+                          </div>
+                        </div>
+                      </motion.div>
+
+                  ))}
                 </div>
               </div>
             </div>

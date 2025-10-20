@@ -36,7 +36,7 @@ export default function Services() {
     };
     return (
         <>
-            <div className="text-center mb-20">
+            <div className="text-center mb-20" id={"services"}>
                 <h2 className="text-7xl md:text-8xl lg:text-9xl font-black mb-8 tracking-tighter">
                     <span className="bg-gradient-to-r from-yellow-300 to-yellow-500 bg-clip-text text-transparent">
                         SERVICES

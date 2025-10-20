@@ -74,7 +74,7 @@ export default function HeroShowcase() {
            <Services />
 
             {/* Call to Action */}
-            <div className="text-center mt-32">
+            <div className="text-center mt-32" id={'contact'}>
               <div className="relative inline-block">
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-xl opacity-30"></div>
                 <button className="relative px-16 py-8 bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black text-2xl rounded-full hover:scale-110 transition-transform duration-300 shadow-2xl">

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Navbar from '../../../components/Navbar';
+import { motion } from 'framer-motion';
 
 /**
  * Trim & Accessories Service Page
@@ -89,22 +90,58 @@ export default function TrimAccessoriesPage() {
               <div className="bg-green-400/10 rounded-3xl p-8">
                 <h3 className="text-2xl font-bold text-green-400 mb-4">Popular Options</h3>
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center py-2 border-b border-gray-700">
-                    <span className="text-white">Piano Black</span>
-                    <span className="text-gray-300">High-gloss finish</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2 border-b border-gray-700">
-                    <span className="text-white">Brushed Metal</span>
-                    <span className="text-gray-300">Aluminum texture</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2 border-b border-gray-700">
-                    <span className="text-white">Carbon Fiber</span>
-                    <span className="text-gray-300">3D textured pattern</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2">
-                    <span className="text-white">Wood Grain</span>
-                    <span className="text-gray-300">Natural wood look</span>
-                  </div>
+                  {[
+                    {
+                      name: 'Piano Black',
+                      description: 'High-gloss finish',
+                      background: 'linear-gradient(135deg, rgba(20,20,20,0.9) 0%, rgba(10,10,10,0.95) 50%, rgba(20,20,20,0.9) 100%)',
+                      shine: true
+                    },
+                    {
+                      name: 'Brushed Metal',
+                      description: 'Aluminum texture',
+                      background: 'repeating-linear-gradient(90deg, rgba(180,180,190,0.3) 0px, rgba(200,200,210,0.4) 1px, rgba(180,180,190,0.3) 2px)',
+                      shine: true
+                    },
+                    {
+                      name: 'Carbon Fiber',
+                      description: '3D textured pattern',
+                      background: 'repeating-linear-gradient(45deg, rgba(40,40,45,0.5) 0px, rgba(40,40,45,0.5) 3px, rgba(25,25,30,0.6) 3px, rgba(25,25,30,0.6) 6px), repeating-linear-gradient(-45deg, rgba(35,35,40,0.4) 0px, rgba(35,35,40,0.4) 3px, rgba(20,20,25,0.5) 3px, rgba(20,20,25,0.5) 6px)',
+                      shine: false
+                    },
+                    {
+                      name: 'Wood Grain',
+                      description: 'Natural wood look',
+                      background: 'linear-gradient(90deg, rgba(101,67,33,0.4) 0%, rgba(139,90,43,0.5) 20%, rgba(101,67,33,0.4) 40%, rgba(120,80,40,0.45) 60%, rgba(101,67,33,0.4) 80%, rgba(139,90,43,0.5) 100%)',
+                      shine: false
+                    }
+                  ].map((trim, index) => (
+                      <motion.div
+                          key={trim.name}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{
+                            opacity: 1,
+                            x: 0
+                          }}
+                          transition={{
+                            duration: 0.6,
+                            delay: index * 0.1,
+                            ease: "easeOut"
+                          }}
+                          whileHover={{
+                            scale: 1.02,
+                            boxShadow: trim.shine ? '0 4px 20px rgba(255,255,255,0.15)' : '0 4px 20px rgba(0,0,0,0.4)',
+                            transition: { duration: 0.3 }
+                          }}
+                          className={`flex justify-between items-center py-4 px-4 ${
+                              index < 3 ? 'border-b border-gray-700' : ''
+                          } rounded-lg cursor-pointer backdrop-blur-sm`}
+                          style={{ background: trim.background }}
+                      >
+                        <span className="text-white font-medium">{trim.name}</span>
+                        <span className="text-gray-300">{trim.description}</span>
+                      </motion.div>
+                  ))}
                 </div>
               </div>
             </div>

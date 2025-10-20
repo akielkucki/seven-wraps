@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Navbar from '../../../components/Navbar';
+import { motion } from 'framer-motion';
 
 /**
  * Paint Protection Service Page
@@ -89,22 +90,63 @@ export default function PaintProtectionPage() {
               <div className="bg-blue-400/10 rounded-3xl p-8">
                 <h3 className="text-2xl font-bold text-blue-400 mb-4">Coverage Options</h3>
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center py-2 border-b border-gray-700">
-                    <span className="text-white">Partial Front</span>
-                    <span className="text-gray-300">Hood, Bumper, Mirrors</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2 border-b border-gray-700">
-                    <span className="text-white">Full Front</span>
-                    <span className="text-gray-300">Full Hood, Fenders, Bumper</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2 border-b border-gray-700">
-                    <span className="text-white">Track Package</span>
-                    <span className="text-gray-300">High-Impact Areas</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2">
-                    <span className="text-white">Full Vehicle</span>
-                    <span className="text-gray-300">Complete Protection</span>
-                  </div>
+                  {[
+                    {
+                      name: 'Partial Front',
+                      description: 'Hood, Bumper, Mirrors',
+                      coverage: 0.25
+                    },
+                    {
+                      name: 'Full Front',
+                      description: 'Full Hood, Fenders, Bumper',
+                      coverage: 0.45
+                    },
+                    {
+                      name: 'Track Package',
+                      description: 'High-Impact Areas',
+                      coverage: 0.70
+                    },
+                    {
+                      name: 'Full Vehicle',
+                      description: 'Complete Protection',
+                      coverage: 1.0
+                    }
+                  ].map((option, index) => (
+                      <motion.div
+                          key={option.name}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{
+                            opacity: 1,
+                            x: 0
+                          }}
+                          transition={{
+                            duration: 0.6,
+                            delay: index * 0.1,
+                            ease: "easeOut"
+                          }}
+                          whileHover={{
+                            scale: 1.02,
+                            backgroundColor: 'rgba(255,255,255,0.05)',
+                            transition: { duration: 0.3 }
+                          }}
+                          className={`flex justify-between items-center py-4 px-4 ${
+                              index < 3 ? 'border-b border-gray-700' : ''
+                          } rounded-lg cursor-pointer relative overflow-hidden`}
+                      >
+                        <motion.div
+                            initial={{ width: '0%' }}
+                            animate={{ width: `${100 * option.coverage}%` }}
+                            transition={{
+                              duration: 1,
+                              delay: index * 0.1 + 0.3,
+                              ease: "easeOut"
+                            }}
+                            className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-blue-600/30"
+                        />
+                        <span className="text-white font-medium relative z-10">{option.name}</span>
+                        <span className="text-gray-300 relative z-10">{option.description}</span>
+                      </motion.div>
+                  ))}
                 </div>
               </div>
             </div>
