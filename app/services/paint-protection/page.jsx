@@ -122,7 +122,7 @@ export default function PaintProtectionPage() {
                           transition={{
                             duration: 0.6,
                             delay: index * 0.1,
-                            ease: "easeOut"
+                            ease: 'easeOut'
                           }}
                           whileHover={{
                             scale: 1.02,
@@ -139,7 +139,7 @@ export default function PaintProtectionPage() {
                             transition={{
                               duration: 1,
                               delay: index * 0.1 + 0.3,
-                              ease: "easeOut"
+                              ease: 'easeOut'
                             }}
                             className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-blue-600/30"
                         />
